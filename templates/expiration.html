@@ -1,0 +1,66 @@
+
+{% extends 'index.html' %}
+{% block content %} 
+
+        <div class="container mx-10 mt-4 text-center">
+            <div>
+                <h4>Expired Items</h4>
+            </div>
+
+            <div class="table-wrapper-scroll-y my-custom-scrollbar">
+              
+                <table style="height: 30rem; overflow-y: auto"
+                class="table table-responsive-md table-bordered table-hover table-striped mb-md-0">
+                  <thead>
+                    <tr >
+                      <th style="position: relative;" class="header" scope="col">#</th>
+                      <th style="position: relative;" class="header" scope="col">Item Name</th>
+                      <th style="position: relative;" class="header" scope="col">Lot #</th>
+                      <th style="position: relative;" class="header" scope="col">Exp. Date</th>
+                      <th style="position: relative;" class="header" scope="col">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for expiration in expirations %}
+                    <tr class="clickable-row">
+                      <th scope="row">{{forloop.counter}}</th>
+                      <td>{{expiration}}</td>
+                      <td>{{expiration.lot_number}}</td>
+                      <td>{{expiration.exp_date}}</td>
+                      <td>
+                        <div style= "display: flex; flex-direction:row; justify-content: flex-start;">
+                              <a type="button" type="button" class="btn btn-secondary" href="{% url 'manager-update' expiration.id %}">Edit</a>
+                             <a style="margin-left: 3%;" type="button" class="btn btn-danger" href="{% url 'manager-delete' expiration.id %}" ><i class="fa-solid fa-trash-can"></i
+                              ></a>
+                        </div>
+
+                    </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+        </div>
+        <div class="container mt-4">
+            <form style="border-bottom: 0px; margin-bottom: 8px" id="search" method="POST" action="{% url 'search-results' %}">
+                {% csrf_token %} 
+                <div class="search-bar">
+                  <button
+                    class="btn btn-outline-secondary"
+                    type="submit"
+                    id="button-addon1"
+                  >
+                    Search
+                  </button>
+                  <input
+                  type="text"
+                  name="searched"
+                  id="search-input"
+                  class="form-control"
+                  />
+                </div>
+            </form>
+          </div>
+    </div>
+    </div>
+{% endblock %}
+

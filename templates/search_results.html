@@ -1,0 +1,83 @@
+
+{% extends 'index.html' %} {% load static %} {% block content %}
+<div
+        id="right"
+        class="col-m-12 col-lg-12 col-sm-12 col-12 my-col text-center"
+      >
+        <h4 id="tests">Search Results</h4>
+        <div class="table-responsive">
+          <table id="table" class="table">
+            <thead>
+              <tr>
+                <th class="header" scope="col">#</th>
+                <th class="header" scope="col">Item Name</th>
+                <th class="header" scope="col">Lot #</th>
+                <th class="header" scope="col">Exp. Date</th>
+                <th class="header" scope="col">Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for result in results %}
+              <tr class="clickable-row">
+                <th scope="row">{{forloop.counter}}</th>
+                <td>{{result}}</td>
+                <td>{{result.lot_number}}</td>
+                <td>{{result.exp_date}}</td>
+                <td>
+                  <div
+                    style="
+                      display: flex;
+                      flex-direction: row;
+                      justify-content: flex-start;
+                    "
+                  >
+                    <a
+                      type="button"
+                      type="button"
+                      class="btn btn-secondary"
+                      href="{% url 'manager-update' result.id %}"
+                      >Edit</a
+                    >
+                    <a
+                      style="margin-left: 3%"
+                      type="button"
+                      class="btn btn-danger"
+                      href="{% url 'manager-delete' result.id %}"
+                      ><i class="fa-solid fa-trash-can"></i
+                    ></a>
+                  </div>
+                </td>
+              </tr>
+
+              {% endfor %}
+            </tbody>
+          </table>
+        </div>
+        <form
+          style="margin-top: 5%; margin-bottom: 1%"
+          id="search"
+          method="POST"
+          action="{% url 'search-results' %}"
+        >
+          {% csrf_token %}
+          <div class="search-bar">
+            <button
+              class="btn btn-outline-secondary"
+              type="submit"
+
+              id="button-addon1"
+            >
+              Search
+            </button>
+    
+            <input
+              type="text"
+              name="searched"
+              id="search-input"
+              class="form-control"
+            />
+          
+        </form>
+      </div>
+    </div>
+    {% endblock %}
