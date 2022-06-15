@@ -1,5 +1,9 @@
 # Inventory-Web-App
 
+This app was built with HTML, CSS, and Django. It allows the user to add laboratory items to a database.  
+A search bar can be used to narrow down items in this list. Items can be edited and their informtion updated, <br> 
+or they can be deleted. The user can also list items that have expired and edit or delete them. There is <br>
+barcode scanner functionality built into the app made for two commonly scanned items in my lab. 
 
 
 <h3>Commands required to run this app: </h3>
