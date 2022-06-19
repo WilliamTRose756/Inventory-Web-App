@@ -31,7 +31,7 @@ Use `python manage.py createsuperuser` to create an admin
 
 While in the main folder, run`python manage.py runserver` 
 <ul>
-  <li>In your browser navigate to "localhost:8000/manager"</li>
+  <li>In your browser navigate to "localhost:8000"</li>
   <li>Login and you can now use the app!</li>
 </ul>
 
