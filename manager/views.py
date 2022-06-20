@@ -9,7 +9,7 @@ from datetime import datetime
 
 
 
-@login_required
+
 def manager(request):
     items = Item.objects.all()
 
@@ -28,8 +28,7 @@ def manager(request):
 
     return render(request, 'index.html', context)
 
-@login_required
-@staff_member_required
+
 def item_delete(request, pk):
     selected = Item.objects.get(id=pk) 
     if request.method == 'POST':
@@ -37,8 +36,7 @@ def item_delete(request, pk):
         return redirect('manager')
     return render(request, 'delete.html')
 
-@login_required
-@staff_member_required
+
 def item_update(request, pk):
     item = Item.objects.get(id=pk)
     if request.method == 'POST':
@@ -53,7 +51,7 @@ def item_update(request, pk):
     }
     return render(request, 'update.html', context)
 
-@login_required
+
 def search_results(request):
     if request.method == 'POST':
         searched = request.POST['searched']
@@ -64,7 +62,7 @@ def search_results(request):
     else:
         return render(request, 'search_results.html')
 
-@login_required
+
 def expiration(request):
     if request.method == 'GET':
         expirations = Item.objects.filter(exp_date__lte=datetime.now())

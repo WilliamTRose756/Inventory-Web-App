@@ -16,13 +16,15 @@ document.addEventListener("keydown", function (evt) {
 const handleBarcode = (scanned_barcode) => {
   // TSA plates (fallout and contact)
   if (document.getElementById("plates").checked == true) {
-    console.log("Plates");
-    var lot_number = scanned_barcode.substring(3, 8);
-    var exp_date = scanned_barcode.substring(16, 24);
-    var exp_year = scanned_barcode.substring(14, 16);
-    var exp = exp_date + "" + exp_year;
+    let lotNumber = scanned_barcode.substring(3, 9);
 
-    document.getElementById("id_lot_number").value = lot_number;
+    let expMonth = scanned_barcode.substring(16, 18);
+    let expDay = scanned_barcode.substring(18, 21);
+    let expYear = scanned_barcode.substring(14, 16);
+
+    let exp = expMonth + "/" + expDay + "/" + expYear;
+
+    document.getElementById("id_lot_number").value = lotNumber;
     document.getElementById("id_exp_date").value = exp;
 
     barcode = "";
@@ -30,12 +32,15 @@ const handleBarcode = (scanned_barcode) => {
 
   // Remel Diluents
   if (document.getElementById("diluents").checked == true) {
-    var lot_number = scanned_barcode.substring(26, 32);
-    var exp_date = scanned_barcode.substring(20, 24);
-    var exp_year = scanned_barcode.substring(18, 20);
-    var exp = exp_date + "" + exp_year;
+    let lotNumber = scanned_barcode.substring(26, 32);
 
-    document.getElementById("id_lot_number").value = lot_number;
+    let expMonth = scanned_barcode.substring(20, 22);
+    let expDay = scanned_barcode.substring(22, 24);
+    let expYear = scanned_barcode.substring(18, 20);
+
+    let exp = expMonth + "/" + expDay + "/" + expYear;
+
+    document.getElementById("id_lot_number").value = lotNumber;
     document.getElementById("id_exp_date").value = exp;
 
     barcode = "";
